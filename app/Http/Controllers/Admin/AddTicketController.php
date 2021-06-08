@@ -14,7 +14,7 @@ class AddTicketController extends Controller
         $item = Event::findOrFail($id);
 
         return view('pages.admin.event.addticket', [
-            'ite' => $item, //diubahni//
+            'item' => $item, //diubahni//
         ]);
     }
 }
