@@ -32,14 +32,30 @@ class BannerController extends Controller
     }
 
     public function edit(){
+        $item = Banner::with('event', 'blog')->get();
 
+        return view('pages.admin.banner.edit',[
+            'item' => $item
+        ]);
     }
 
-    public function update(){
+    public function update(BannerRequest $request, $id){
+        $data = $request->all();
+        $data['image'] = $request->file('image')->store(
+            'assets/banner', 'public'
+        );
 
+        $item = Banner::findOrFail($id);
+
+        $item->update($data);
+        return redirect()->route('banner.index');
     }
 
-    public function destroy(){
-        
+    public function destroy($id){
+        $item = Banner::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('banner.index');
+
     }
 }
