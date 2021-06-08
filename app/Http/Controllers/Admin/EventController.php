@@ -25,7 +25,7 @@ class EventController extends Controller
 
         $data = $request->all();
 
-        $data['slug'] = Str::slug($request->name);
+        $data['slug'] = Str::slug($request->title);
         $data['banner'] = $request->file('banner')->store('assets/banner', 'public');
         Event::create($data);
 
@@ -46,6 +46,7 @@ class EventController extends Controller
 
     public function update(EventRequest $request, $id){
         $data = $request->all();
+        $data['slug'] = Str::slug($request->title);
         $data['image'] = $request->file('image')->store(
             'assets/event', 'public'
         );

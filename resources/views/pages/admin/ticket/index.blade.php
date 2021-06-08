@@ -19,7 +19,7 @@
                             <tr>
                           <th>ID</th>
                           <th>Nama Tiket</th>
-                          <th>Jumlah</th>
+                          <th>Kuantitas</th>
                           <th>Harga</th>
                           <th>Kadaluarsa</th>
                           <th>Aksi</th>
@@ -31,7 +31,7 @@
                           <tr>
                               <td>{{ $no++ }}</td>
                               <td>{{ $item->ticket_name }}</td>
-                              <td>{{ $item->ticket_quantity }}</td>
+                              <td>{{ $item->quantity }}</td>
                               <td>{{ $item->price }}</td>
                               <td>{{ $item->expired_ticket }}</td>
                               <td>

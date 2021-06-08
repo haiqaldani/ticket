@@ -6,7 +6,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 justify-content-between">
                 <div class="d-sm-flex align-items-center justify-content-between">
-                    <h3 class="m-0 font-weight-bold text-primary text-2xl">Event</h3>
+                    <h3 class="m-0 font-weight-bold text-primary text-2xl">Transaksi</h3>
                       {{-- <a href="{{ route('transaction.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                           <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Event
                       </a> --}}

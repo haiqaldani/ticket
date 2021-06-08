@@ -27,14 +27,10 @@ class TicketController extends Controller
 
     public function store(TicketRequest $request){
         $data = $request->all();
-        $data['banner'] = $request->file('image')->store(
-            'assets/ticket', 'public'
-        );
-
 
         Ticket::create($data);
 
-        return redirect()->route('event.index');
+        return redirect()->route('ticket.index');
     }
 
     public function view(){
@@ -51,10 +47,6 @@ class TicketController extends Controller
 
     public function update(TicketRequest $request, $id){
         $data = $request->all();
-        $data['image'] = $request->file('image')->store(
-            'assets/ticket', 'public'
-        );
-
         $item = Ticket::findOrFail($id);
 
         $item->update($data);

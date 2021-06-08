@@ -28,7 +28,7 @@
           </div>
           <div class="list-group list-group-flush">
             <a
-              href="{{ route('dashboard') }}"
+              href="{{ route('user-dashboard') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard')) ? 'active' : '' }} "
             >
               Dashboard
