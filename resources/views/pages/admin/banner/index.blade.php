@@ -35,16 +35,10 @@
                                     @else
                                         <td>{{ $item->event->title }}</td>
                                     @endif
-                                    @if ($item->event_id == null)
-                                        <td><img src="{{ Storage::url($item->blog->banner) }}" alt="" style="width: 200px"
-                                                class="img-thumbnail"></td>
-                                    @else
-                                        <td><img src="{{ Storage::url($item->event->banner) }}" alt=""
-                                                style="width: 200px" class="img-thumbnail"></td>
-                                    @endif
-
-
-
+                                    <td>
+                                        <img src="{{ Storage::url($item->image) }}" alt="" style="width: 200px"
+                                            class="img-thumbnail">
+                                    </td>
                                     <td>
                                         <a href="{{ route('banner.edit', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
