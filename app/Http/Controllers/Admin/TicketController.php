@@ -27,6 +27,10 @@ class TicketController extends Controller
 
     public function store(TicketRequest $request){
         $data = $request->all();
+        $data['banner'] = $request->file('image')->store(
+            'assets/ticket', 'public'
+        );
+
 
         Ticket::create($data);
 

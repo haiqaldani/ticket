@@ -22,6 +22,9 @@ class BannerController extends Controller
 
     public function store(BannerRequest $request){
         $data = $request->all();
+        $data['image'] = $request->file('image')->store(
+            'assets/banner', 'public'
+        );
         Banner::create($data);
 
         return redirect()->route('banner.index');
@@ -31,8 +34,8 @@ class BannerController extends Controller
 
     }
 
-    public function edit(){
-        $item = Banner::with('event', 'blog')->get();
+    public function edit($id){
+        $item = Banner::with('event', 'blog')->findOrFail($id);
 
         return view('pages.admin.banner.edit',[
             'item' => $item
@@ -41,11 +44,14 @@ class BannerController extends Controller
 
     public function update(BannerRequest $request, $id){
         $data = $request->all();
+
+        $item = Banner::findOrFail($id);
+
         $data['image'] = $request->file('image')->store(
             'assets/banner', 'public'
         );
 
-        $item = Banner::findOrFail($id);
+       
 
         $item->update($data);
         return redirect()->route('banner.index');

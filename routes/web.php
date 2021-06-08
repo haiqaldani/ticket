@@ -55,5 +55,6 @@ Route::prefix('admin')
         Route::resource('user', 'UserController');
         Route::resource('banner', 'BannerController');
         Route::resource('ticket', 'TicketController');
+        Route::resource('transaction', 'TransactionController');
         Route::resource('blog', 'BlogController');
     });

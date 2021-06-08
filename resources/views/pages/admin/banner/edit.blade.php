@@ -19,7 +19,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('banner.update') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('banner.update', $item->id) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="form-row ">
@@ -33,6 +33,9 @@
                         <input type="text" class="form-control" name="banner_id" placeholder="Id Banner"
                             value="{{ $item->banner_id }}" @if($item->banner_id == null) disabled @endif>
                     </div>
+                </div>
+                <div class="form-group">
+                    <img src="{{ Storage::url($item->image) }}">
                 </div>
                 <div class="form-group">
                     <label for="image">Gambar Banner</label>
