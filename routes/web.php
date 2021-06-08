@@ -51,7 +51,7 @@ Route::prefix('admin')
         Route::get('/', 'DashboardController@index')->name('dashboard');
 
         Route::resource('event', 'EventController');
-        Route::resource('add_ticket', 'AddTicketController');
+        Route::get('/event/{id}/ticket', 'TicketController@addticket')->name('add-ticket');
         Route::resource('user', 'UserController');
         Route::resource('banner', 'BannerController');
         Route::resource('ticket', 'TicketController');

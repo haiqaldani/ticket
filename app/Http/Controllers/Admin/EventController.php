@@ -36,15 +36,30 @@ class EventController extends Controller
 
     }
 
-    public function edit(){
+    public function edit($id){
+        $item = Event::findorFail($id);
 
+        return view('pages.admin.event.edit',[
+            'item' => $item
+        ]);
     }
 
-    public function update(){
+    public function update(EventRequest $request, $id){
+        $data = $request->all();
+        $data['image'] = $request->file('image')->store(
+            'assets/event', 'public'
+        );
 
+        $item = Event::findOrFail($id);
+
+        $item->update($data);
+        return redirect()->route('event.index');
     }
 
-    public function destroy(){
-        
+    public function destroy($id){
+        $item = Event::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('event.index');
     }
 }

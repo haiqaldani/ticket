@@ -43,7 +43,7 @@
                                   @endif
                               </td>
                               <td>
-                                  <a href="{{ route('add_ticket.edit', $item->id) }}" class="btn btn-info">
+                                  <a href="{{ route('add-ticket', $item->id) }}" class="btn btn-info">
                                       <i class="fa fa-plus"></i> Tambah Tiket
                                   </a>
                                   <a href="{{ route('event.edit', $item->id) }}" class="btn btn-info">

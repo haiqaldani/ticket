@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Event;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TicketRequest;
 use App\Ticket;
@@ -16,8 +17,12 @@ class TicketController extends Controller
         ]);
     }
 
-    public function create($id){
-        //
+    public function addticket($id){
+        $item = Event::findorFail($id);
+
+        return view('pages.admin.event.add-ticket',[
+            'item' => $item
+        ]);
     }
 
     public function store(TicketRequest $request){
@@ -32,16 +37,31 @@ class TicketController extends Controller
 
     }
 
-    public function edit(){
+    public function edit($id){
+        $item = Ticket::findorFail($id);
 
+        return view('pages.admin.ticket.edit',[
+            'item' => $item
+        ]);
     }
 
-    public function update(){
+    public function update(TicketRequest $request, $id){
+        $data = $request->all();
+        $data['image'] = $request->file('image')->store(
+            'assets/ticket', 'public'
+        );
 
+        $item = Ticket::findOrFail($id);
+
+        $item->update($data);
+        return redirect()->route('ticket.index');
     }
 
-    public function destroy(){
+    public function destroy($id){
+        $item = Ticket::findorFail($id);
+        $item->delete();
 
+        return redirect()->route('banner.index');
     }
 
 }

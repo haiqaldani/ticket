@@ -7,9 +7,9 @@
             <div class="card-header py-3 justify-content-between">
                 <div class="d-sm-flex align-items-center justify-content-between">
                     <h3 class="m-0 font-weight-bold text-primary text-2xl">Tiket</h3>
-                      <a href="{{ route('ticket.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                      {{-- <a href="{{ route('ticket.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                           <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Tiket
-                      </a>
+                      </a> --}}
                 </div>
             </div>
             <div class="card-body">
