@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 
 class AddTicketController extends Controller
 {
-    public function edit($id){
+    public function edit($id)
+    {
 
         $item = Event::findOrFail($id);
 
-        return view('pages.admin.event.addticket',[
-            'item' => $item,
+        return view('pages.admin.event.addticket', [
+            'ite' => $item, //diubahni//
         ]);
     }
 }
