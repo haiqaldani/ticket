@@ -18,12 +18,18 @@ class DashboardEventController extends Controller
     }
 
     public function create(){
-        
+
         return view('pages.dashboard-event-create');
     }
 
-    public function store(){
+    public function store(EventRequest $request){
+        $data = $request->all();
 
+        $data['slug'] = Str::slug($request->title);
+        $data['banner'] = $request->file('banner')->store('assets/banner', 'public');
+        Event::create($data);
+
+        return redirect()->route('dashboard-event');
     }
 
     public function detail(Request $request, $id){

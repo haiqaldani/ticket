@@ -34,6 +34,12 @@
               Dashboard
             </a>
             <a
+              href="{{ route('dashboard-myticket') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('dashboard/myticket')) ? 'active' : '' }} "
+            >
+              Tiket Saya
+            </a>
+            <a
               href="{{ route('dashboard-event') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/event*')) ? 'active' : '' }} "
             >
@@ -43,19 +49,19 @@
               href="{{ route('dashboard-ticket') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/ticket*')) ? 'active' : '' }} "
             >
-              Ticket
+              Tiket
             </a>
             <a
               href="{{ route('dashboard-transaction') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/transaction*')) ? 'active' : '' }} "
             >
-              Transaction
+              Transaksi
             </a>
             <a
               href="{{ route('dashboard-profile') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/profile*')) ? 'active' : '' }} "
             >
-              My Profile
+              Profile Saya
             </a>
             <a
                href="{{ route('logout') }}"

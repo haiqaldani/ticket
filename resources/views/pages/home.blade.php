@@ -71,16 +71,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12" data-aos="fade-up">
-                        <h5>New Products</h5>
+                        <h5>New Events</h5>
                     </div>
                 </div>
                 <div class="row">
-                    @php $incrementProduct = 0 @endphp
+                    @php $incrementEvent = 0 @endphp
                     @forelse ($products as $product)
                         <div
                         class="col-6 col-md-4 col-lg-3"
                         data-aos="fade-up"
-                        data-aos-delay="{{  $incrementProduct += 100 }}"
+                        data-aos-delay="{{  $incrementEvent += 100 }}"
                         >
                             <a href="{{ route('detail', $product->slug) }}" class="component-products d-block">
                                 <div class="products-thumbnail">
@@ -109,7 +109,7 @@
                                 data-aos="fade-up"
                                 data-aos-delay="100"
                             >
-                                No Products Found
+                                No Events Found
                             </div>
                     @endforelse
                 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Ticket Dashboard Product
+    Ticket Dashboard Event
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">My Products</h2>
+                <h2 class="dashboard-title">My Events</h2>
                 <p class="dashboard-subtitle">
                   Manage it well and get money
                 </p>
@@ -23,7 +23,7 @@
                     <a
                       href="{{ route('dashboard-event-create') }}"
                       class="btn btn-success"
-                      >Add New Product</a
+                      >Add New Event</a
                     >
                   </div>
                 </div>

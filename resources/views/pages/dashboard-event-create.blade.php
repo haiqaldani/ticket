@@ -12,7 +12,7 @@
 >
   <div class="container-fluid">
     <div class="dashboard-heading">
-      <h2 class="dashboard-title">Create Product</h2>
+      <h2 class="dashboard-title">Create Event</h2>
       <p class="dashboard-subtitle">
         Create your own product
       </p>
@@ -31,7 +31,7 @@
           @endif
           <form action="{{ route('dashboard-event-store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -44,7 +44,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Kategori Event</label>
-                      <select name="catagory_event" class="form-control" id="category_event">
+                      <select name="category_event" class="form-control" id="category_event">
                         <option value="">Pilih Kategori Event</option>
                         <option value="Festival General">Festival General</option>
                         <option value="Workshop">Workshop</option>
@@ -91,7 +91,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Syarat dan Ketentuan</label>
-                      <textarea name="term_and_condition" id="editor2"></textarea>
+                      <textarea name="term_and_conditions" id="editor2"></textarea>
                     </div>
                   </div>
                   <div class="col-md-12">
