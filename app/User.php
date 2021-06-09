@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function verification_data(){
         return $this->belongsTo(VerificationData::class, 'verification_id', 'id');
     }
+
+    public function event(){
+        return $this->hasMany(Event::class, 'user_id', 'id');
+    }
 }

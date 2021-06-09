@@ -25,7 +25,7 @@ class EventController extends Controller
 
         $data = $request->all();
 
-        $data['slug'] = Str::slug($request->name);
+        $data['slug'] = Str::slug($request->title);
         $data['banner'] = $request->file('banner')->store('assets/banner', 'public');
         Event::create($data);
 
@@ -36,15 +36,31 @@ class EventController extends Controller
 
     }
 
-    public function edit(){
+    public function edit($id){
+        $item = Event::findorFail($id);
 
+        return view('pages.admin.event.edit',[
+            'item' => $item
+        ]);
     }
 
-    public function update(){
+    public function update(EventRequest $request, $id){
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->title);
+        $data['image'] = $request->file('image')->store(
+            'assets/event', 'public'
+        );
 
+        $item = Event::findOrFail($id);
+
+        $item->update($data);
+        return redirect()->route('event.index');
     }
 
-    public function destroy(){
-        
+    public function destroy($id){
+        $item = Event::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('event.index');
     }
 }

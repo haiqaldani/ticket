@@ -38,6 +38,11 @@
             <span>Ticket</span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('transaction.index') }}">
+            <i class="fas fa-fw fa-image"></i>
+            <span>Transaction</span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('user.index') }}">
             <i class="fas fa-fw fa-image"></i>
             <span>User</span></a>

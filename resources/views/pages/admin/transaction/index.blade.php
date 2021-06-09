@@ -6,22 +6,22 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 justify-content-between">
                 <div class="d-sm-flex align-items-center justify-content-between">
-                    <h3 class="m-0 font-weight-bold text-primary text-2xl">Tiket</h3>
-                      {{-- <a href="{{ route('ticket.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                          <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Tiket
+                    <h3 class="m-0 font-weight-bold text-primary text-2xl">Transaksi</h3>
+                      {{-- <a href="{{ route('transaction.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                          <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Event
                       </a> --}}
                 </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="table_ticket" class="table" width="100%">
+                    <table id="table_transaction" class="table" width="100%">
                         <thead>
                             <tr>
                           <th>ID</th>
-                          <th>Nama Tiket</th>
-                          <th>Kuantitas</th>
-                          <th>Harga</th>
-                          <th>Kadaluarsa</th>
+                          <th>Pembeli</th>
+                          <th>Total Harga</th>
+                          <th>Status Transaksi</th>
+                          <th>Dibuat</th>
                           <th>Aksi</th>
                       </tr>
                       </thead>
@@ -30,15 +30,16 @@
                       @forelse($items as $item)
                           <tr>
                               <td>{{ $no++ }}</td>
-                              <td>{{ $item->ticket_name }}</td>
-                              <td>{{ $item->quantity }}</td>
-                              <td>{{ $item->price }}</td>
-                              <td>{{ $item->expired_ticket }}</td>
+                              <td>{{ $item->user->name }}</td>
+                              <td>{{ $item->total_price }}</td>
+                              <td>{{ $item->transaction_status }}</td>
+                              <td>{{ $item->created_at }}</td>
+                              <td>{{ $item->city }}</td>
                               <td>
-                                  <a href="{{ route('ticket.edit', $item->id) }}" class="btn btn-info">
+                                  <a href="{{ route('transaction.edit', $item->id) }}" class="btn btn-info">
                                       <i class="fa fa-pencil-alt"></i>
                                   </a>
-                                  <form action="{{ route('ticket.destroy', $item->id) }}" method="post" class="d-inline">
+                                  <form action="{{ route('transaction.destroy', $item->id) }}" method="post" class="d-inline">
                                       @csrf
                                       @method('delete')
                                       <button class="btn btn-danger">

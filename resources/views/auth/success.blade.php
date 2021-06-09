@@ -1,7 +1,7 @@
 @extends('layouts.success')
 
 @section('title')
-    Store Success Page
+    Ticket Success Page
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
             <div class="col-lg-6 text-center">
               <img src="/images/success.svg" alt="" class="mb-4" />
               <h2>
-                Welcome to Store
+                Welcome to Ticket
               </h2>
               <p>
                 Kamu sudah berhasil terdaftar <br />

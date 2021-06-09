@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Store Dashboard Transaction
+    Ticket Dashboard Transaction
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
                             <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                 aria-labelledby="pills-home-tab">
                                 @foreach ($items as $item)
-                                    @if ($item->event->user_id = Auth::user()->id)
+                                    @if ($item->event->user_id == Auth::user()->id)
                                         @if ($item->quantity != 0)
                                             <a href="" class="card card-list d-block">
                                                 <div class="card-body">
@@ -59,15 +59,13 @@
                                                 </div>
                                             </a>
                                         @endif
-
                                     @endif
-
                                 @endforeach
                             </div>
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                                 aria-labelledby="pills-profile-tab">
                                 @foreach ($items as $item)
-                                    @if ($item->quantity = 0)
+                                    @if ($item->quantity == 0)
                                         <a href="" class="card card-list d-block">
                                             <div class="card-body">
                                                 <div class="row">
