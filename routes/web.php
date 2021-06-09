@@ -28,13 +28,15 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard/event', 'DashboardEventController@index')->name('dashboard-event');
     Route::get('/dashboard/event/create', 'DashboardEventController@create')->name('dashboard-event-create');
-    Route::post('/dashboard/event/{id}', 'DashboardEventController@update')->name('dashboard-event-update');
+    Route::get('/dashboard/event/store', 'DashboardEventController@store')->name('dashboard-event-store');
+    Route::get('/dashboard/event/{id}/edit', 'DashboardEventController@edit')->name('dashboard-event-edit');
+    Route::post('/dashboard/event/{id}/update', 'DashboardEventController@update')->name('dashboard-event-update');
     Route::get('/dashboard/event/{id}', 'DashboardEventController@detail')->name('dashboard-event-detail');
 
 
     Route::get('/dashboard/ticket', 'DashboardTicketController@index')->name('dashboard-ticket');
     Route::get('/dashboard/ticket/add/{id}', 'DashboardTicketController@add')->name('dashboard-ticket-add');
-    Route::post('/dashboard/ticket/add', 'DashboardTicketController@store')->name('dashboard-ticket-store');
+    Route::post('/dashboard/ticket/store', 'DashboardTicketController@store')->name('dashboard-ticket-store');
     Route::post('/dashboard/ticket/edit/{id}', 'DashboardTicketController@edit')->name('dashboard-ticket-edit');
     Route::post('/dashboard/ticket/delete', 'DashboardTicketController@destroy')->name('dashboard-ticket-delete');
 

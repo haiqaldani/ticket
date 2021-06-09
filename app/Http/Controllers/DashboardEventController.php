@@ -18,6 +18,7 @@ class DashboardEventController extends Controller
     }
 
     public function create(){
+        
         return view('pages.dashboard-event-create');
     }
 
