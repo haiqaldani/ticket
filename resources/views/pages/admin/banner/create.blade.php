@@ -21,17 +21,18 @@
                 @endif
                 <form action="{{ route('banner.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="event_id">Id Event</label>
-                            <input type="text" class="form-control" name="event_id" placeholder="Id Event"
-                                value="{{ old('event_id') }}">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="banner_id">Id Banner</label>
-                            <input type="text" class="form-control" name="banner_id" placeholder="Id Banner"
-                                value="{{ old('banner_id') }}">
-                        </div>
+                    <div class="form-group">
+                        <label for="event_blog_id">Id Banner</label>
+                        <input type="text" class="form-control" name="event_blog_id" placeholder="Id Banner"
+                            value="{{ old('event_blog_id') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Kategori</label>
+                        <select name="category" class="form-control">
+                            <option value="">Pilih Kategori</option>
+                            <option value="event">Event</option>
+                            <option value="blog">Blog</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="image">Gambar Banner</label>

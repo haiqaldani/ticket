@@ -9,6 +9,6 @@ class Blog extends Model
 
     
     public function banner(){
-        return $this->hasOne(Event::class, 'event_id', 'id');
+        return $this->hasOne(Event::class, 'event_blog_id', 'id');
     }
 }

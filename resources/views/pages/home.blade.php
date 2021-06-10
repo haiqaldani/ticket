@@ -18,17 +18,10 @@
                             </ol>
                             <div class="carousel-inner">
                                 @foreach ($items as $item)
-                                    @if ($item->event_id == null)
-                                        <div class="caraousel-item  @if ($item->first()) active @endif">
-                                            <img src="{{ Storage::url($item->blog->banner) }}" alt="Carousel Image"
-                                                class="d-block w-100" />
-                                        </div>
-                                    @else
-                                        <div class="carousel-item  @if ($item->first()) active @endif">
-                                            <img src="{{ Storage::url($item->event->banner) }}" alt="Carousel Image"
-                                                class="d-block w-100" />
-                                        </div>
-                                    @endif
+                                    <div class="caraousel-item  @if ($item->first()) active @endif">
+                                        <img src="{{ Storage::url($item->image) }}" alt="Carousel Image"
+                                            class="d-block w-100" />
+                                    </div>
                                 @endforeach
                             </div>
                         </div>

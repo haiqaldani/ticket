@@ -29,12 +29,14 @@
                             @forelse($items as $item)
                                 <tr>
                                     <td>{{ $no++ }}</td>
+                                    <td>
+                                        @if ($item->category == 'event')
+                                            {{ $item->event->title }}
 
-                                    @if ($item->event_id == null)
-                                        <td>{{ $item->blog->title }}</td>
-                                    @else
-                                        <td>{{ $item->event->title }}</td>
-                                    @endif
+                                        @else
+                                            {{ $item->blog->title }}
+                                        @endif
+                                    </td>
                                     <td>
                                         <img src="{{ Storage::url($item->image) }}" alt="" style="width: 200px"
                                             class="img-thumbnail">
