@@ -43,8 +43,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/dashboard/ticket/delete', 'DashboardTicketController@destroy')->name('dashboard-ticket-delete');
 
     Route::get('/dashboard/transaction', 'DashboardTransactionController@index')->name('dashboard-transaction');
-    Route::get('/dashboard/profile', 'DashboardProfileController@index')->name('dashboard-profile');
 
+    Route::get('/dashboard/myprofile', 'DashboardProfileController@myprofile')->name('dashboard-profile');
+    Route::post('/dashboard/myprofile/update', 'DashboardProfileController@update')->name('dashboard-profile-update');
 
 });
 

@@ -10,13 +10,13 @@ class Banner extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'event_id', 'blog_id', 'image'
+        'event_blog_id', 'image'
     ];
 
     public function event(){
-        return $this->belongsTo(Event::class, 'event_id', 'id');
+        return $this->belongsTo(Event::class, 'event_blog_id', 'id');
     }
     public function blog(){
-        return $this->belongsTo(Blog::class, 'blog_id', 'id');
+        return $this->belongsTo(Blog::class, 'event_blog_id', 'id');
     }
 }

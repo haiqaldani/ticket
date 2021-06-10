@@ -14,7 +14,7 @@ class Event extends Model
     ];
 
     public function banner(){
-        return $this->hasOne(Event::class, 'event_id', 'id');
+        return $this->hasOne(Event::class, 'event_blog_id', 'id');
     }
     public function ticket(){
         return $this->hasMany(Ticket::class, 'event_id', 'id');

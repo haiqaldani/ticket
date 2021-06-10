@@ -59,7 +59,7 @@
             </a>
             <a
               href="{{ route('dashboard-profile') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard/profile*')) ? 'active' : '' }} "
+              class="list-group-item list-group-item-action {{ (request()->is('dashboard/myprofile*')) ? 'active' : '' }} "
             >
               Profile Saya
             </a>
@@ -119,7 +119,7 @@
                     <div class="dropdown-menu">
                         <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
                         <a href="{{ route('dashboard-profile') }}" class="dropdown-item">
-                            Settings
+                            My Profile
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
