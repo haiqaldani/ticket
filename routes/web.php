@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/event', 'DetailEventController@index')->name('detail-event');
+Route::get('/event/{slug}', 'DetailEventController@index')->name('detail-event');
 
 Route::group(['middleware' => ['auth']], function () {
 

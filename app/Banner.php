@@ -10,7 +10,7 @@ class Banner extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'event_blog_id', 'image'
+        'event_blog_id', 'image', 'category'
     ];
 
     public function event(){
