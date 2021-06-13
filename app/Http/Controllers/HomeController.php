@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Banner;
+use App\Event;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,9 +16,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $items = Banner::with('event', 'blog')->get();
+        $items = Banner::with('event', 'blog')->take(6)->get();
+        $events = Event::take(8)->get();
         return view('pages.home',[
-            'items' => $items
+            'items' => $items,
+            'events' => $events
         ]);
     }
 }

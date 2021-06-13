@@ -60,7 +60,7 @@
             </div>
         </section> --}}
 
-        {{-- <section class="store-new-products">
+        <section class="ticket-new-events">
             <div class="container">
                 <div class="row">
                     <div class="col-12" data-aos="fade-up">
@@ -69,30 +69,28 @@
                 </div>
                 <div class="row">
                     @php $incrementEvent = 0 @endphp
-                    @forelse ($products as $product)
+                    @forelse ($events as $event)
                         <div
                         class="col-6 col-md-4 col-lg-3"
                         data-aos="fade-up"
                         data-aos-delay="{{  $incrementEvent += 100 }}"
                         >
-                            <a href="{{ route('detail', $product->slug) }}" class="component-products d-block">
+                            <a href="{{ route('detail-event', $event->slug) }}" class="component-products d-block">
                                 <div class="products-thumbnail">
                                     <div
                                     class="products-image"
-                                    style="
-                                        @if ($product->galleries)
-                                            background-image: url('{{ Storage::url($product->galleries->first()->photos) }}');
-                                        @else
-                                            background-color: #eee;
-                                        @endif
-                                    "
+                                    style="background-image: url('{{ Storage::url($event->banner) }}');"
                                     ></div>
                                 </div>
                                 <div class="products-text">
-                                    {{  $product->name }}
+                                    {{  $event->title }}
                                 </div>
                                 <div class="products-price">
-                                    ${{ $product->price }}
+                                    @if ($event->event_type == 'Online')
+                                        Event Online
+                                    @else
+                                        {{ $item->city }}
+                                    @endif
                                 </div>
                             </a>
                         </div>
@@ -107,6 +105,6 @@
                     @endforelse
                 </div>
             </div>
-        </section> --}}
+        </section>
     </div>
 @endsection
