@@ -68,6 +68,12 @@
                                 -
                                 {{ \Carbon\Carbon::parse($item->until_date)->format('d M Y') }}
                             </p>
+                            <p class="">
+                                {{ \Carbon\Carbon::createFromFormat('H:i:s',$item->start_at)->format('H:i') }}
+                                -
+                                {{ \Carbon\Carbon::createFromFormat('H:i:s',$item->until_time)->format('H:i') }}
+                                WIB
+                            </p>
                         </div>
                         <div class="col-lg-4 pt-3">
                             <h6>Lokasi</h6>
