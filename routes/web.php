@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/event/{slug}', 'DetailEventController@index')->name('detail-event');
+Route::post('/event/ticket', 'CartController@store')->name('cart');
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -46,6 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard/myprofile', 'DashboardProfileController@myprofile')->name('dashboard-profile');
     Route::post('/dashboard/myprofile/update', 'DashboardProfileController@update')->name('dashboard-profile-update');
+
+   
 
 });
 
