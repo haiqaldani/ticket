@@ -27,6 +27,7 @@
                         <tbody>
                             @php $no = 1; @endphp
                             @forelse($items as $item)
+                                @if($item->event->delete_at == null)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>
@@ -56,6 +57,7 @@
 
                                     </td>
                                 </tr>
+                                @endif
                             @empty
                                 <td colspan="7" class="text-center">
                                     Data Kosong

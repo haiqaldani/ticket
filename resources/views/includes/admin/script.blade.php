@@ -39,3 +39,5 @@
 
 
 {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script> --}}
+
+<script type="text/javascript" src="{{ url('backend/libraries/datetime/build/jquery.datetimepicker.full.min.js') }}"></script>

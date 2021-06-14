@@ -22,17 +22,18 @@
             <form action="{{ route('banner.update', $item->id) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
-                <div class="form-row ">
-                    <div class="form-group col-md-6">
-                        <label for="event_id">Id Event</label>
-                        <input type="text" class="form-control" name="event_id" placeholder="Id Event"
-                            value="{{ $item->event_id }}" @if($item->event_id == null) disabled @endif>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="banner_id">Id Banner</label>
-                        <input type="text" class="form-control" name="banner_id" placeholder="Id Banner"
-                            value="{{ $item->banner_id }}" @if($item->banner_id == null) disabled @endif>
-                    </div>
+                <div class="form-group">
+                    <label for="event_blog_id">Id Banner</label>
+                    <input type="text" class="form-control" name="event_blog_id" placeholder="Id Banner"
+                        value="{{ $item->event_blog_id }}">
+                </div>
+                <div class="form-group">
+                    <label for="category">Kategori</label>
+                    <select name="category" class="form-control">
+                        <option value="{{ $item->category }}">Pilih untuk diganti</option>
+                        <option value="event">Event</option>
+                        <option value="blog">Blog</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <img src="{{ Storage::url($item->image) }}">
