@@ -6,3 +6,4 @@
     AOS.init();
 </script>
 <script src="/script/navbar-scroll.js"></script>
+<script type="text/javascript" src="{{ url('backend/libraries/datetime/build/jquery.datetimepicker.full.min.js') }}"></script>

@@ -52,6 +52,29 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="start_on_date">Jadwal Event</label>
+                    <div class="form-row ">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="date" name="start_on_date"
+                                placeholder="Dari Tanggal" value="{{ $item->start_on_date }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="date2" name="until_date"
+                                placeholder="Sampai Tanggal" value="{{ $item->until_date }}">
+                        </div>
+                    </div>
+                    <div class="form-row ">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="time" name="start_at" placeholder="Dari Jam"
+                                value="{{ $item->start_at }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="time2" name="until_time" placeholder="Sampai Jam"
+                                value="{{ $item->until_time }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="event_type">Tipe Event</label>
                     <select id="event_type" name="event_type" class="form-control">
                         <option value="">Pilih Tipe Event</option>
@@ -99,6 +122,39 @@
     <script>
         CKEDITOR.replace('description');
         CKEDITOR.replace('term_and_conditions');
+
+    </script>
+@endsection
+@section('scripts')
+    {{-- <script>
+        $("#schedule").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+   </script> --}}
+    <script>
+        jQuery.datetimepicker.setLocale('de');
+
+        jQuery('#date , #date2').datetimepicker({
+            i18n: {
+                de: {
+                    months: [
+                        'Januar', 'Februar', 'März', 'April',
+                        'Mai', 'Juni', 'Juli', 'August',
+                        'September', 'Oktober', 'November', 'Dezember',
+                    ],
+                    dayOfWeek: [
+                        "So.", "Mo", "Di", "Mi",
+                        "Do", "Fr", "Sa.",
+                    ]
+                }
+            },
+            timepicker: false,
+            format: 'd.m.Y'
+        });
+
+        jQuery('#time , #time2').datetimepicker({
+            datepicker: false,
+            format: 'H:i',
+            step: 15
+        });
 
     </script>
 @endsection

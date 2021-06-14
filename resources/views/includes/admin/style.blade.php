@@ -26,6 +26,7 @@
 <link rel='stylesheet'
     href='https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'> --}}
 
+<link rel="stylesheet" href="{{ url('backend/libraries/datetime/build/jquery.datetimepicker.css') }}">
 
 
 <script src="{{ url('backend/libraries/ckeditor/ckeditor.js') }}"></script>
