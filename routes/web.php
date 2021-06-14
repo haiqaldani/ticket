@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard/transaction', 'DashboardTransactionController@index')->name('dashboard-transaction');
 
     Route::get('/dashboard/myprofile', 'DashboardProfileController@myprofile')->name('dashboard-profile');
-    Route::post('/dashboard/myprofile/update', 'DashboardProfileController@update')->name('dashboard-profile-update');
+    Route::post('/dashboard/myprofile/{redirect}', 'DashboardProfileController@update')->name('dashboard-profile-update');
 
    
 

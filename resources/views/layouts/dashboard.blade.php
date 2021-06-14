@@ -7,14 +7,16 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="author" content="" /> 
 
     <title>@yield('title')</title>
 
     @stack('prepend-style')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link href="/style/main.css" rel="stylesheet" />
+    <link href="{{ url('style/main.css') }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
+
+
     @stack('addon-style')
   </head>
 
@@ -171,8 +173,12 @@
 
     <!-- Bootstrap core JavaScript -->
     @stack('prepend-script')
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="/vendor/jquery/jquery.min.js"></script> --}}
+    
+    <script src="{{ url('backend/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    {{-- <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.js"></script>
     <script>
       $("#datatable").DataTable();
@@ -188,5 +194,6 @@
       });
     </script>
     @stack('addon-script')  
+    
   </body>
 </html>

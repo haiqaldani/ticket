@@ -17,10 +17,9 @@
             <div class="dashboard-content">
                 <div class="row">
                     <div class="col-12">
-                        <form action="{{ route('dashboard-profile-update') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('dashboard-profile-update', 'dashboard-profile') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
+                            {{-- @method('PUT') --}}
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
@@ -51,7 +50,7 @@
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">https://ticket.com/profile/</div>
                                                     </div>
-                                                    <input type="text" class="form-control" id="inlineFormInputGroup"
+                                                    <input type="text" name="slug"  class="form-control" id="inlineFormInputGroup"
                                                         value="@if ($item->slug != null) {{ $item->slug }} @endif" @if ($item->slug != null) disabled @endif>
                                                 </div>
                                             </div>
