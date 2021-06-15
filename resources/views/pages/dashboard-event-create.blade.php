@@ -95,6 +95,12 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <label>Link Virtual</label>
+                                                <input type="text" class="form-control" name="link" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
                                                 <label>Nama Tempat</label>
                                                 <input type="text" class="form-control" name="venue_name" />
                                             </div>
