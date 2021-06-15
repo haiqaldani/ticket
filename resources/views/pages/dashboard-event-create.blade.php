@@ -93,7 +93,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Link Virtual</label>
                                                 <input type="text" class="form-control" name="link" />

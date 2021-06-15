@@ -10,7 +10,7 @@ class Event extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'banner', 'address', 'slug', 'term_and_conditions', 'description', 'venue_name', 'city', 'event_type', 'category_event', 'link', 'user_id'
+        'title', 'banner', 'address', 'slug', 'term_and_conditions', 'description', 'venue_name', 'city', 'event_type', 'category_event', 'link', 'user_id', 'start_on_date', 'until_date', 'start_at', 'until_time'
     ];
 
     public function banner(){
