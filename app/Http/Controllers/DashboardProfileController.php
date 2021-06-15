@@ -41,6 +41,7 @@ class DashboardProfileController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $data['id_card_photo'] = $request->file('id_card_photo')->store('assets/verification', 'public');
         VerificationData::create($data);
 
         return redirect()->route('dashboard-event');

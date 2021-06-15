@@ -16,12 +16,12 @@
                                     $no = 0;
                                 @endphp
                                 @foreach ($items as $item)
-                                    <li class="@if ($item->first()) active @endif" data-target="#storeCarousel" data-slide-to="{{ $no++ }}"></li>
+                                    <li @if($item == reset($items)) class="active" @endif data-target="#storeCarousel" data-slide-to="{{ $no++ }}"></li>
                                 @endforeach
                             </ol>
                             <div class="carousel-inner">
-                                @foreach ($items as $item)
-                                    <div class="caraousel-item  @if ($item->first()) active @endif">
+                                @foreach ($items as $items)
+                                    <div class="caraousel-item  @if($item == reset($item))) active @endif">
                                         <img src="{{ Storage::url($item->image) }}" alt="Carousel Image"
                                             class="d-block w-100" />
                                     </div>
