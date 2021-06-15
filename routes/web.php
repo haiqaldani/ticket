@@ -25,7 +25,7 @@ Route::get('/event/ticket/checkout', 'CartController@checkout')->name('checkout'
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::group(['middleware' => ['seller' , 'admin']] ,function () {
+    Route::group(['middleware' => ['seller' || 'admin']] ,function () {
 
         Route::get('/dashboard/event', 'DashboardEventController@index')->name('dashboard-event');
         Route::get('/dashboard/event/create', 'DashboardEventController@create')->name('dashboard-event-create');
