@@ -10,4 +10,9 @@ class DashboardAccountController extends Controller
     {
         return view('pages.dashboard-account')
     }
+
+    public function store()
+    {
+        
+    }
 }

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class DashboardEventController extends Controller
 {
     public function index(){
-        $events = Event::where('user_id', '=', Auth::user()->id)->get();
+        $events = Event::where('user_id', Auth::user()->id)->get();
         return view('pages.dashboard-event',[
             'events' => $events
         ]);
