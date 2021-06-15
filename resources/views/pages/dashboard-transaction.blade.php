@@ -22,19 +22,19 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-1">
-                                            <img src="{{ Storage::url($item->event->banner) }}" class="w-50" />
+                                            <img src="{{ Storage::url($item->ticket->event->banner) }}" class="w-50" />
                                         </div>
                                         <div class="col-md-3">
-                                            {{ $item->event->title }}
+                                            {{ $item->ticket->event->title }}
                                         </div>
                                         <div class="col-md-3">
-                                            {{ $item->ticket_name }}
+                                            {{ $item->ticket->ticket_name }}
                                         </div>
                                         <div class="col-md-2">
-                                            {{ $item->quantity }}
+                                            {{ $item->quantity }} pcs
                                         </div>
                                         <div class="col-md-2">
-                                            {{ $item->price }}
+                                            Rp. {{ number_format($item->price) }}
                                         </div>
                                         <div class="col-md-1 d-none d-md-block">
                                             <img src="/images/dashboard-arrow-right.svg" alt="" />

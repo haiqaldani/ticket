@@ -10,11 +10,11 @@ class TransactionDetail extends Model
     use SoftDeletes;
 
     protected $fillable = [
-       'transaction_id', 'event_id', 'ticket_id', 'price', 'payment_status'
+       'transaction_id', 'ticket_id', 'price', 'payment_status', 'quantity'
     ];
 
-    public function event(){
-        return $this->hasOne(Event::class, 'id', 'event_id');
+    public function ticket(){
+        return $this->hasOne(Ticket::class, 'id', 'ticket_id');
     }
     public function transaction(){
         return $this->hasOne(Transaction::class, 'id', 'transaction_id');

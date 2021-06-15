@@ -17,12 +17,17 @@
             <div class="dashboard-content">
                 <div class="row">
                     <div class="col-12">
+                        <div class="d-flex bd-highlight mb-3 justify-content-center">
+                            <div class="p-3 bd-highlight">Verifikasi untuk menjadi mitra kami</div>
+                            <div class="p-2 bd-highlight"><a href="" class="btn btn-success pl-5 pr-5">Verifikasi</a></div>
+                          </div>
                         <form action="{{ route('dashboard-profile-update', 'dashboard-profile') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             {{-- @method('PUT') --}}
-                            <div class="card">
+                            <div class="card mt-4">
                                 <div class="card-body">
                                     <div class="row">
+                                        
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 @if ($item->cover != null)

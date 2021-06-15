@@ -16,4 +16,16 @@ class Ticket extends Model
     public function event(){
         return $this->belongsTo(Event::class, 'event_id', 'id');
     }
+
+    public function cart(){
+        return $this->belongsTo( Cart::class, 'id', 'ticket_id' );
+    }
+
+    public function user(){
+        return $this->hasOne( User::class, 'id', 'user_id');
+    }
+
+    public function transaction_detail(){
+        return $this->belongsTo( transaction_detail::class, 'id', 'ticket_id' );
+    }
 }

@@ -12,4 +12,12 @@ class Cart extends Model
     protected $fillable = [
         'user_id', 'ticket_id', 'quantity'
     ];
+
+    public function ticket(){
+        return $this->hasOne( Ticket::class, 'id', 'ticket_id' );
+    }
+
+    public function user(){
+        return $this->belongsTo( User::class, 'users_id', 'id');
+    }
 }

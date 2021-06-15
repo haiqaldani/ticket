@@ -44,4 +44,9 @@ class User extends Authenticatable
     public function event(){
         return $this->hasMany(Event::class, 'user_id', 'id');
     }
+
+    public function cart(){
+        return $this->belongsTo( Cart::class, 'users_id', 'id');
+    }
+    
 }

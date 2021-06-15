@@ -109,11 +109,11 @@
 
                         <div role="tabpanel" class="tab-pane" id="buzz">
                             <form action="{{ route('cart') }}" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" value="{{ $user }}" name="user_id">
                                 @csrf
                                 @php $no = 1; @endphp
                                 @foreach ($item->ticket as $item)
                                     <input type="hidden" value="{{ $item->id }}" name="ticket_id[]">
+                                    <input type="hidden" value="{{ $item->price }}" name="price[]">
                                     <div class="card border mt-2">
                                         <div class="card-body">
                                             <h5 class="card-title border-bottom pb-2">{{ $item->ticket_name }}</h5>
@@ -127,6 +127,7 @@
                                                         max="{{ $item->quantity }}">
                                                 </div>
                                             </div>
+                                            <h5 class="card-title border-bottom pb-2">Rp. {{ number_format($item->price ?? 0) }}</h5>
                                             <p class="card-text">Berakhir Tanggal
                                                 {{ \Carbon\Carbon::parse($item->expired_ticket)->format('d F Y') }}</p>
                                         </div>
