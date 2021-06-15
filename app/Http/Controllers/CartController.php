@@ -9,6 +9,7 @@ use App\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -67,7 +68,7 @@ class CartController extends Controller
     public function checkout()
     {
         $carts = TransactionDetail::with(['ticket.event.user', 'transaction'])->whereHas('transaction', function ($transaction) {
-            $transaction->where('user_id', Auth::user()->id);
+            $transaction->where('user_id', Auth::user()->id)->where('transaction_status', 'PENDING');
         })->get();
 
         // ->where('user_id', Auth::user()->id)->get();
@@ -85,5 +86,24 @@ class CartController extends Controller
         $total->update(['total_price' => $request->total_price]);
 
         return redirect()->route('dashboard-transaction');
+    }
+
+    public function delete($id)
+    {
+        $cart = TransactionDetail::findOrFail($id);
+
+        $cart->delete();
+
+        return redirect()->route('checkout');
+    }
+    public function deleteall()
+    {
+        $carts = TransactionDetail::with(['ticket.event.user', 'transaction'])->whereHas('transaction', function ($transaction) {
+            $transaction->where('user_id', Auth::user()->id)->where('transaction_status', 'PENDING');
+        });
+        
+        $carts->delete();
+
+        return redirect()->route('home');
     }
 }
