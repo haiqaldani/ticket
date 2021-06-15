@@ -25,7 +25,7 @@ Route::get('/event/ticket/checkout', 'CartController@checkout')->name('checkout'
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::group(['middleware' => ['seller']] ,function () {
+    Route::group(['middleware' => ['seller' , 'admin']] ,function () {
 
         Route::get('/dashboard/event', 'DashboardEventController@index')->name('dashboard-event');
         Route::get('/dashboard/event/create', 'DashboardEventController@create')->name('dashboard-event-create');
@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard/accounts', 'DashboardAccountController@index')->name('dashboard-account');
 
     Route::get('/dashboard/myprofile/verification', 'DashboardProfileController@verification')->name('dashboard-verification');
-    Route::get('/dashboard/myprofile/verification/store', 'DashboardProfileController@process')->name('dashboard-verification');
+    Route::get('/dashboard/myprofile/verification/store', 'DashboardProfileController@process')->name('dashboard-verification-process');
 });
 
 Route::prefix('admin')
