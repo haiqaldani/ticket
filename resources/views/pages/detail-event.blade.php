@@ -54,13 +54,13 @@
                                 <h6 class="col-lg-12">Diselenggarakan Oleh</h6>
                                 <div class="d-flex bd-highlight pt-3">
                                     <div class="flex-fill bd-highlight col-lg-3">
-                                        <img src="@if ($item->user->profile_picture != null) {{ Storage::url($item->user->profile_picture) }} @else
-                                            /backend/img/profile.png @endif" class="rounded-circle w-100">
+                                    <img src="@if ($item->user->profile_picture != null) {{ Storage::url($item->user->profile_picture) }} @else
+                                        /backend/img/profile.png @endif" class="rounded-circle w-100">
                                     </div>
                                     <div class="flex-fill bd-highlight col-lg-9 align-self-center">
                                         <p>{{ $item->user->name }}</p>
                                     </div>
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 pt-3">
@@ -103,77 +103,52 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane in active" id="profile">
                             {!! $item->description !!}
+                            <h5 class="text-black">Syarat dan Ketentuan</h5>
+                            {!! $item->term_and_conditions !!}
                         </div>
 
                         <div role="tabpanel" class="tab-pane" id="buzz">
-                            
+                            <form action="{{ route('cart') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @php $no = 1; @endphp
+                                @foreach ($item->ticket as $item)
+                                    <input type="hidden" value="{{ $item->id }}" name="ticket_id[]">
+                                    <input type="hidden" value="{{ $item->price }}" name="price[]">
+                                    <div class="card border mt-2">
+                                        <div class="card-body">
+                                            <h5 class="card-title border-bottom pb-2">{{ $item->ticket_name }}</h5>
+                                            <div class="d-flex bd-highlight">
+                                                <div class="flex-fill bd-highlight col-lg-8">
+                                                    {!! $item->description !!}
+                                                    
+                                                </div>
+                                                <div class="flex-fill bd-highlight col-lg-4">
+                                                    <input type="number" name="quantity[]" id="" min="0" placeholder="0" value=""
+                                                        max="{{ $item->quantity }}">
+                                                </div>
+                                            </div>
+                                            <h5 class="card-title border-bottom pb-2">Rp. {{ number_format($item->price ?? 0) }}</h5>
+                                            <p class="card-text">Berakhir Tanggal
+                                                {{ \Carbon\Carbon::parse($item->expired_ticket)->format('d F Y') }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <button type="submit" class="btn btn-success col-lg-12 mt-3">Pesan Tiket</button>
+                            </form>
                         </div>
+                    </div>
                 </div>
+            </section>
         </div>
-        </section>
-        {{-- <section class="store-description">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-lg-8">
-                            {!! $item->description !!}
-                        </div>
-                    </div>
-                </div>
-            </section> --}}
-        {{-- <section class="store-review">
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-lg-8 mt-3 mb-3">
-                <h5>Customer Review (3)</h5>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-lg-8">
-                <ul class="list-unstyled">
-                  <li class="media">
-                    <img
-                      src="/images/icons-testimonial-1.png"
-                      alt=""
-                      class="mr-3 rounded-circle"
-                    />
-                    <div class="media-body">
-                      <h5 class="mt-2 mb-1">Hazza Risky</h5>
-                      I thought it was not good for living room. I really happy
-                      to decided buy this product last week now feels like
-                      homey.
-                    </div>
-                  </li>
-                  <li class="media">
-                    <img
-                      src="/images/icons-testimonial-2.png"
-                      alt=""
-                      class="mr-3 rounded-circle"
-                    />
-                    <div class="media-body">
-                      <h5 class="mt-2 mb-1">Anna Sukkirata</h5>
-                      Color is great with the minimalist concept. Even I thought
-                      it was made by Cactus industry. I do really satisfied with
-                      this.
-                    </div>
-                  </li>
-                  <li class="media">
-                    <img
-                      src="/images/icons-testimonial-3.png"
-                      alt=""
-                      class="mr-3 rounded-circle"
-                    />
-                    <div class="media-body">
-                      <h5 class="mt-2 mb-1">Dakimu Wangi</h5>
-                      When I saw at first, it was really awesome to have with.
-                      Just let me know if there is another upcoming product like
-                      this.
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section> --}}
     </div>
+    <div>
+
     </div>
 @endsection
+@push('addon-script')
+    <script src="{{ url('backend/libraries/bootstrap-input-spinner.js') }}"></script>
+    <script>
+        $("input[type='number']").inputSpinner()
+
+    </script>
+@endpush

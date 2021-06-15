@@ -20,8 +20,25 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/event/{slug}', 'DetailEventController@index')->name('detail-event');
+Route::post('/event/ticket', 'CartController@store')->name('cart');
+Route::get('/event/ticket/checkout', 'CartController@checkout')->name('checkout');
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::group(['middleware' => ['seller']] ,function () {
+        Route::get('/dashboard/ticket', 'DashboardTicketController@index')->name('dashboard-ticket');
+        Route::get('/dashboard/ticket/add/{id}', 'DashboardTicketController@add')->name('dashboard-ticket-add');
+        Route::post('/dashboard/ticket/store', 'DashboardTicketController@store')->name('dashboard-ticket-store');
+        Route::post('/dashboard/ticket/edit/{id}', 'DashboardTicketController@edit')->name('dashboard-ticket-edit');
+        Route::post('/dashboard/ticket/delete', 'DashboardTicketController@destroy')->name('dashboard-ticket-delete');
+
+        Route::get('/dashboard/transaction', 'DashboardTransactionController@index')->name('dashboard-transaction');
+    });
+
+    Route::delete('/event/ticket/{id}', 'CartController@delete')->name('cart-delete');
+    Route::post('/event/ticket', 'CartController@store')->name('cart');
+    Route::get('/event/ticket/checkout', 'CartController@checkout')->name('checkout');
+    Route::post('/event/ticket/process', 'CartController@process')->name('process');
 
     Route::get('/dashboard', 'DashboardController@index')
         ->name('user-dashboard');
@@ -36,23 +53,16 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard/myticket', 'DashboardTicketController@myticket')->name('dashboard-myticket');
 
-    Route::get('/dashboard/ticket', 'DashboardTicketController@index')->name('dashboard-ticket');
-    Route::get('/dashboard/ticket/add/{id}', 'DashboardTicketController@add')->name('dashboard-ticket-add');
-    Route::post('/dashboard/ticket/store', 'DashboardTicketController@store')->name('dashboard-ticket-store');
-    Route::post('/dashboard/ticket/edit/{id}', 'DashboardTicketController@edit')->name('dashboard-ticket-edit');
-    Route::post('/dashboard/ticket/delete', 'DashboardTicketController@destroy')->name('dashboard-ticket-delete');
-
-    Route::get('/dashboard/transaction', 'DashboardTransactionController@index')->name('dashboard-transaction');
+    
 
     Route::get('/dashboard/myprofile', 'DashboardProfileController@myprofile')->name('dashboard-profile');
-    Route::post('/dashboard/myprofile/update', 'DashboardProfileController@update')->name('dashboard-profile-update');
-
+    Route::post('/dashboard/myprofile/{redirect}', 'DashboardProfileController@update')->name('dashboard-profile-update');
 });
 
 Route::prefix('admin')
     ->namespace('Admin')
-    ->middleware(['auth','admin'])
-    ->group(function() {
+    ->middleware(['auth', 'admin'])
+    ->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
 
         Route::resource('event', 'EventController');

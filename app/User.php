@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'number_phone', 'address', 'about_us', 'twitter', 'facebook', 'instagram', 'slug', 'roles', 'status', 'profile_picture', 'cover', 'verification_id'
     ];
 
     /**
@@ -44,4 +44,9 @@ class User extends Authenticatable
     public function event(){
         return $this->hasMany(Event::class, 'user_id', 'id');
     }
+
+    public function cart(){
+        return $this->belongsTo( Cart::class, 'users_id', 'id');
+    }
+    
 }

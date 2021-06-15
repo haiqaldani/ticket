@@ -11,8 +11,8 @@ class DashboardTransactionController extends Controller
     public function index(){
 
         $sellItems = TransactionDetail::with(['transaction.user', 'ticket.event'])
-        ->whereHas('event', function($event){
-            $event->where('user_id', Auth::user()->id);
+        ->whereHas('transaction', function($transaction){
+            $transaction->where('user_id', Auth::user()->id);
         })->get();
 
         return view('pages.dashboard-transaction',[
