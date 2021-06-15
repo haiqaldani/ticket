@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard/accounts', 'DashboardAccountController@index')->name('dashboard-account');
 
     Route::get('/dashboard/myprofile/verification', 'DashboardProfileController@verification')->name('dashboard-verification');
-    Route::get('/dashboard/myprofile/verification/store', 'DashboardProfileController@process')->name('dashboard-verification-process');
+    Route::get('/dashboard/myprofile/verification/store', 'DashboardProfileController@store')->name('dashboard-verification-process');
 });
 
 Route::prefix('admin')

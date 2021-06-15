@@ -12,9 +12,12 @@
                     <div class="col-lg-12" data-aos="zoom-in">
                         <div id="storeCarousel" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li class="active" data-target="#storeCarousel" data-slide-to="0"></li>
-                                <li data-target="#storeCarousel" data-slide-to="1"></li>
-                                <li data-target="#storeCarousel" data-slide-to="2"></li>
+                                @php
+                                    $no = 0;
+                                @endphp
+                                @foreach ($items as $item)
+                                    <li class="@if ($item->first()) active @endif" data-target="#storeCarousel" data-slide-to="{{ $no++ }}"></li>
+                                @endforeach
                             </ol>
                             <div class="carousel-inner">
                                 @foreach ($items as $item)
