@@ -20,8 +20,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/event/{slug}', 'DetailEventController@index')->name('detail-event');
-Route::post('/event/ticket', 'CartController@store')->name('cart');
-Route::get('/event/ticket/checkout', 'CartController@checkout')->name('checkout');
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -43,7 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard/transaction', 'DashboardTransactionController@index')->name('dashboard-transaction');
     });
 
-    Route::delete('/event/ticket/{id}', 'CartController@delete')->name('cart-delete');
+    Route::delete('/event/ticket/all/', 'CartController@deleteall')->name('transaction-delete');
+    Route::delete('/event/ticket/{id}', 'CartController@delete')->name('transaction-detail-delete');
     Route::post('/event/ticket', 'CartController@store')->name('cart');
     Route::get('/event/ticket/checkout', 'CartController@checkout')->name('checkout');
     Route::post('/event/ticket/process', 'CartController@process')->name('process');
