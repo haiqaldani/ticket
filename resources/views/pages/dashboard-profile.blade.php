@@ -19,7 +19,7 @@
                     <div class="col-12">
                         <div class="d-flex bd-highlight mb-3 justify-content-center">
                             <div class="p-3 bd-highlight">Verifikasi untuk menjadi mitra kami</div>
-                            <div class="p-2 bd-highlight"><a href="" class="btn btn-success pl-5 pr-5">Verifikasi</a></div>
+                            <div class="p-2 bd-highlight"><a href="{{ route('dashboard-verification') }}" class="btn btn-success pl-5 pr-5">Verifikasi</a></div>
                           </div>
                         <form action="{{ route('dashboard-profile-update', 'dashboard-profile') }}" method="POST" enctype="multipart/form-data">
                             @csrf
