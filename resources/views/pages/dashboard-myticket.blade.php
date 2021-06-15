@@ -22,7 +22,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-1">
-                                            <img src="{{ Storage::url($item->event->banner) }}" class="w-50" />
+                                            <img src="{{ Storage::url($item->ticket->event->banner) }}" class="w-50" />
                                         </div>
                                         <div class="col-md-3">
                                             {{ $item->ticket->event->title }}
@@ -30,8 +30,11 @@
                                         <div class="col-md-3">
                                             {{ $item->ticket->ticket_name }}
                                         </div>
+                                        <div class="col-md-1">
+                                            {{ $item->quantity }} pcs
+                                        </div>
                                         <div class="col-md-2">
-                                            {{ $item->created_at }}
+                                            {{ \Carbon\Carbon::parse($item->ticket->expired_at)->format('d F Y') }}
                                         </div>
                                         <div class="col-md-1 d-none d-md-block">
                                             <img src="/images/dashboard-arrow-right.svg" alt="" />

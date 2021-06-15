@@ -55,6 +55,10 @@
                         class="list-group-item list-group-item-action {{ request()->is('dashboard/myprofile*') ? 'active' : '' }} ">
                         Profile Saya
                     </a>
+                    <a href="{{ route('dashboard-account') }}"
+                        class="list-group-item list-group-item-action {{ request()->is('dashboard/accounts*') ? 'active' : '' }} ">
+                        Rekening Saya
+                    </a>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"
                         class="list-group-item list-group-item-action">
