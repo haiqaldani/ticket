@@ -51,6 +51,10 @@
                         </a>
                     @endif
 
+                    <a href="{{ route('dashboard-mytransaction') }}"
+                        class="list-group-item list-group-item-action {{ request()->is('dashboard/mytransaction*') ? 'active' : '' }} ">
+                        Transaksi Saya
+                    </a>
                     <a href="{{ route('dashboard-profile') }}"
                         class="list-group-item list-group-item-action {{ request()->is('dashboard/myprofile*') ? 'active' : '' }} ">
                         Profile Saya

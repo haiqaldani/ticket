@@ -102,7 +102,10 @@ class CartController extends Controller
             $transaction->where('user_id', Auth::user()->id)->where('transaction_status', 'PENDING');
         });
         
+        $transaction = Transaction::with(['user'])->where('user_id', Auth::user()->id)->where('transaction_status', 'PENDING');
+
         $carts->delete();
+        $transaction->delete();
 
         return redirect()->route('home');
     }

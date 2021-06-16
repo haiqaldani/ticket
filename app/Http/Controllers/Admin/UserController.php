@@ -15,4 +15,14 @@ class UserController extends Controller
             'items' => $items
         ]);
     }
+
+    public function edit($id)
+    {
+        $item = User::with('verification_data')->findOrFail($id);
+        return view('pages.admin.user.edit', [
+            'item' => $item
+        ])
+    }
+
+    
 }

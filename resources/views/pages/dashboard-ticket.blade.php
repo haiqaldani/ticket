@@ -47,7 +47,7 @@
                                                             {{ $item->ticket_name }}
                                                         </div>
                                                         <div class="col-md-2">
-                                                            {{ $item->quantity }}
+                                                            {{ $item->quantity }} pcs
                                                         </div>
                                                         <div class="col-md-2">
                                                             {{ $item->price }}

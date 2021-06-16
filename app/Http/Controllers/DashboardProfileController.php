@@ -42,7 +42,10 @@ class DashboardProfileController extends Controller
     {
         $data = $request->all();
         $data['id_card_photo'] = $request->file('id_card_photo')->store('assets/verification', 'public');
-        VerificationData::create($data);
+        $verif_id = VerificationData::create($data);
+
+        $verif = User::find(Auth::user()->id);
+        $verif->update(['verification_id' => $verif_id->id]);
 
         return redirect()->route('dashboard-event');
     }
