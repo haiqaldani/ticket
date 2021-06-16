@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusFieldToEventsTable extends Migration
+class AddStatusFieldToTransactionDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddStatusFieldToEventsTable extends Migration
      */
     public function up()
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->integer('status')->default(0);
+        Schema::table('transaction_details', function (Blueprint $table) {
+            $table->tinyInteger('status')->default(0);
         });
     }
 
@@ -25,7 +25,7 @@ class AddStatusFieldToEventsTable extends Migration
      */
     public function down()
     {
-        Schema::table('events', function (Blueprint $table) {
+        Schema::table('transaction_details', function (Blueprint $table) {
             $table->dropColumn('status');
         });
     }

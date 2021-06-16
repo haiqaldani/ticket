@@ -9,40 +9,47 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardTransactionController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         $sellItems = TransactionDetail::with(['transaction.user', 'ticket.event'])->get();
 
         // ->whereHas('transaction', function($transaction){
         //     $transaction->where('user_id', Auth::user()->id);})
 
-        return view('pages.dashboard-transaction',[
+        return view('pages.dashboard-transaction', [
             'sellItems' => $sellItems
         ]);
     }
 
-    public function mytransaction(){
+    public function mytransaction()
+    {
 
-        $items = Transaction::with(['user'])->where('user_id', Auth::user()->id)->get();
+        $items = TransactionDetail::with(['transaction.user', 'ticket'])->whereHas('transaction', function ($transaction) {
+            $transaction->where('user_id', Auth::user()->id);
+        })->get();
 
-        return view('pages.dashboard-mytransaction',[
+        return view('pages.dashboard-mytransaction', [
             'items' => $items
         ]);
     }
 
-    public function proofpayment($id){
+    public function proofpayment($id)
+    {
 
         $item = Transaction::findOrFail($id);
-        return view('pages.dashboard-proofpayment',[
+        return view('pages.dashboard-proofpayment', [
             'item' => $item
         ]);
     }
 
-    public function processpayment(Request $request,$id){
+    public function processpayment(Request $request, $id)
+    {
 
         $data = $request->all();
         $data['proof_payment'] = $request->file('proof_payment')->store(
-            'assets/payment', 'public'
+            'assets/payment',
+            'public'
         );
         $data['transaction_status'] = 'PROCESS';
 
@@ -51,6 +58,4 @@ class DashboardTransactionController extends Controller
         $item->update($data);
         return redirect()->route('dashboard-mytransaction');
     }
-
-   
 }

@@ -28,7 +28,7 @@
                 </div>
                 <div class="list-group list-group-flush">
 
-                    @if (Auth::user()->roles == 'SELLER' || Auth::user()->roles == 'ADMIN')
+                    @if (Auth::user()->status == 2 || Auth::user()->roles == 'ADMIN')
                         <a href="{{ route('dashboard-event') }}"
                             class="list-group-item list-group-item-action {{ request()->is('dashboard/event*') ? 'active' : '' }} ">
                             Event
@@ -38,7 +38,7 @@
                         class="list-group-item list-group-item-action {{ request()->is('dashboard/myticket') ? 'active' : '' }} ">
                         Tiket Saya
                     </a>
-                    @if (Auth::user()->roles == 'SELLER' || Auth::user()->roles == 'ADMIN')
+                    @if (Auth::user()->roles == 2 || Auth::user()->roles == 'ADMIN')
 
 
                         <a href="{{ route('dashboard-ticket') }}"
