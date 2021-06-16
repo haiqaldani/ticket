@@ -1,3 +1,3 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-<link href="{{ url('style/main.css') }}" rel="stylesheet" />
-<link rel="stylesheet" href="{{ url('backend/libraries/datetime/build/jquery.datetimepicker.css') }}">
+<link href="/style/main.css" rel="stylesheet" />
+{{-- <link rel="stylesheet" href="{{ url('backend/libraries/datetime/build/jquery.datetimepicker.css') }}"> --}}

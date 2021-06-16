@@ -16,32 +16,36 @@
             </div>
             <div class="dashboard-content">
                 <div class="row">
-                    <div class="col-12 mt-2">
+                    <div class="col-12 mt-3">
                         @foreach ($sellItems as $item)
-                            <a href="" class="card card-list d-block">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <img src="{{ Storage::url($item->ticket->event->banner) }}" class="w-50" />
-                                        </div>
-                                        <div class="col-md-3">
-                                            {{ $item->ticket->event->title }}
-                                        </div>
-                                        <div class="col-md-3">
-                                            {{ $item->ticket->ticket_name }}
-                                        </div>
-                                        <div class="col-md-2">
-                                            {{ $item->quantity }} pcs
-                                        </div>
-                                        <div class="col-md-2">
-                                            Rp. {{ number_format($item->price) }}
-                                        </div>
-                                        <div class="col-md-1 d-none d-md-block">
-                                            <img src="/images/dashboard-arrow-right.svg" alt="" />
+                            @if ($item->ticket->event->user_id == Auth::user()->id)
+                                <a href="" class="card card-list d-block">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <img src="{{ Storage::url($item->ticket->event->banner) }}"
+                                                    class="w-50" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                {{ $item->ticket->event->title }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                {{ $item->ticket->ticket_name }}
+                                            </div>
+                                            <div class="col-md-2">
+                                                {{ $item->quantity }} pcs
+                                            </div>
+                                            <div class="col-md-2">
+                                                Rp. {{ number_format($item->price) }}
+                                            </div>
+                                            <div class="col-md-1 d-none d-md-block">
+                                                <img src="/images/dashboard-arrow-right.svg" alt="" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            @endif
+
                         @endforeach
                     </div>
                 </div>

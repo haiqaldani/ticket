@@ -14,15 +14,16 @@
                             <ol class="carousel-indicators">
                                 @php
                                     $no = 0;
+                                    $number = 0;
                                 @endphp
                                 @foreach ($items as $item)
-                                    <li @if($item == reset($items)) class="active" @endif data-target="#storeCarousel" data-slide-to="{{ $no++ }}"></li>
+                                    <li @if($no == 0) class="active" @endif data-target="#storeCarousel" data-slide-to="{{ $no++ }}"></li>
                                 @endforeach
                             </ol>
                             <div class="carousel-inner">
-                                @foreach ($items as $items)
-                                    <div class="caraousel-item  @if($item == reset($item))) active @endif">
-                                        <img src="{{ Storage::url($item->image) }}" alt="Carousel Image"
+                                @foreach ($items as $item)
+                                    <div class="carousel-item  @if($number == 0) active @endif">
+                                        <img src="{{ Storage::url($item->image) }}" alt="Carousel Image {{ $number++ }}" 
                                             class="d-block w-100" />
                                     </div>
                                 @endforeach

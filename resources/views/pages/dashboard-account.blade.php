@@ -17,82 +17,90 @@
             <div class="dashboard-content">
                 <div class="row">
                     <div class="col-12">
-                        <div class="d-flex bd-highlight mb-3 justify-content-center">
-                            <div class="p-3 bd-highlight">Verifikasi untuk menjadi mitra kami</div>
-                            <div class="p-2 bd-highlight"><a href="{{ route('dashboard-verification') }}" class="btn btn-success pl-5 pr-5">Verifikasi</a></div>
-                          </div>
-                        <form action="{{ route('dashboard-profile-update', 'dashboard-profile') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            {{-- @method('PUT') --}}
-                            <div class="card mt-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nama</label>
-                                                <input type="text" class="form-control" name="name"
-                                                    value="{{ $item->account }}" />
+                        @if ($account == 0)
+                            <form action="{{ route('dashboard-account-post') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="card mt-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <input type="hidden" class="form-control" name="user_id"
+                                                value="{{ Auth::user()->id }}" />
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Bank</label>
+                                                    <input type="text" class="form-control" name="bank_name" value=""
+                                                        placeholder="Cth: BCA" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <input type="text" class="form-control" name="email"
-                                                    value="{{ $item->email }}" />
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Nomor Rekening</label>
+                                                    <input type="text" class="form-control" name="account_number"
+                                                        value="" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Alamat</label>
-                                                <input type="text" class="form-control" name="address"
-                                                    value="{{ $item->address }}" />
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Nama Pemilik Rekening</label>
+                                                    <input type="text" class="form-control" name="account_holder"
+                                                        value="" />
+                                                </div>
                                             </div>
+
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Nomor HP</label>
-                                                <input type="text" class="form-control" name="number_phone"
-                                                    value="{{ $item->number_phone }}" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Instagram</label>
-                                                <input type="text" class="form-control" name="instagram"
-                                                    value="{{ $item->instagram }}" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Twitter</label>
-                                                <input type="text" class="form-control" name="twitter"
-                                                    value="{{ $item->twitter }}" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Facebook</label>
-                                                <input type="text" class="form-control" name="facebook"
-                                                    value="{{ $item->facebook }}" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Tentang Kami</label>
-                                                <input type="text" class="form-control" name="address" id="editor"
-                                                    value="{{ $item->about_us }}" />
+                                        <div class="row">
+                                            <div class="col text-right">
+                                                <button type="submit" class="btn btn-success px-5">
+                                                    Save Now
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col text-right">
-                                            <button type="submit" class="btn btn-success px-5">
-                                                Save Now
-                                            </button>
+                            </form>
+                        @else
+                            <form action="{{ route('dashboard-account-update') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @method('PUT')
+                                @csrf
+                                <div class="card mt-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <input type="hidden" class="form-control" name="user_id"
+                                                value="{{ Auth::user()->id }}" />
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Bank</label>
+                                                    <input type="text" class="form-control" name="bank_name" value="{{ $item->bank_name }}"
+                                                        placeholder="Cth: BCA" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Nomor Rekening</label>
+                                                    <input type="text" class="form-control" name="account_number"
+                                                        value="{{ $item->account_number }}" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Nama Pemilik Rekening</label>
+                                                    <input type="text" class="form-control" name="account_holder"
+                                                        value="{{ $item->account_holder }}" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-right">
+                                                <button type="submit" class="btn btn-success px-5">
+                                                    Save Now
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                        </form>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>

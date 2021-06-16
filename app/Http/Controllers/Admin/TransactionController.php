@@ -15,4 +15,12 @@ class TransactionController extends Controller
             'items' => $items
         ]);
     }
+
+    public function destroy($id)
+    {
+        $item = Transaction::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('transaction.index');
+    }
 }
