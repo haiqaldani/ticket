@@ -19,8 +19,8 @@
                     <div class="col-12 ">
                         <div class="d-flex bd-highlight mb-3 justify-content-center">
                             @if (Auth::user()->verification_data == null)
-                                <div class="p-3 bd-highlight mt-4">Verifikasi untuk menjadi mitra kami</div>
-                                <div class="p-2 bd-highlight"><a href="{{ route('dashboard-verification') }}"
+                                <div class="p-3 bd-highlight mt-3">Verifikasi untuk menjadi mitra kami</div>
+                                <div class="p-2 bd-highlight mt-3"><a href="{{ route('dashboard-verification') }}"
                                         class="btn btn-success pl-5 pr-5">Verifikasi</a></div>
                             @elseif(Auth::user()->status == null)
                             <div class="pt-5 bd-highlight h5">Data anda berhasil diverifikasi</div>

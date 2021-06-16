@@ -97,7 +97,7 @@
                                         Hi, {{ Auth::user()->name }}
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
+                                        {{-- <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a> --}}
                                         <a href="{{ route('dashboard-profile') }}" class="dropdown-item">
                                             My Profile
                                         </a>

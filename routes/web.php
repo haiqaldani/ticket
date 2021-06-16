@@ -24,7 +24,7 @@ Route::get('/event/{slug}', 'DetailEventController@index')->name('detail-event')
 Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['seller']] ,function () {
-        
+
         Route::get('/dashboard', 'DashboardController@index')
         ->name('user-dashboard');
 
@@ -78,6 +78,7 @@ Route::prefix('admin')
 
         Route::resource('event', 'EventController');
         Route::get('/event/{id}/ticket', 'TicketController@addticket')->name('add-ticket');
+        Route::get('/user/verif/{id}', 'UserController@verif')->name('user-verif');
         Route::resource('user', 'UserController');
         Route::resource('banner', 'BannerController');
         Route::resource('ticket', 'TicketController');
