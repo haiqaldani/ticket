@@ -22,8 +22,10 @@
                                 <div class="p-3 bd-highlight mt-3">Verifikasi untuk menjadi mitra kami</div>
                                 <div class="p-2 bd-highlight mt-3"><a href="{{ route('dashboard-verification') }}"
                                         class="btn btn-success pl-5 pr-5">Verifikasi</a></div>
-                            @elseif(Auth::user()->status == null)
+                            @elseif(Auth::user()->status == 2)
                             <div class="pt-5 bd-highlight h5">Data anda berhasil diverifikasi</div>
+                            @elseif(Auth::user()->status == 1)
+                                <div class="pt-5 bd-highlight h5">Data anda masih dalam proses verifikasi</div>
                             @else
                                 <div class="pt-5 bd-highlight h5">Data anda masih dalam proses verifikasi</div>
                             @endif

@@ -42,34 +42,37 @@
                             <tbody>
                                 @php $totalPrice = 0 @endphp
                                 @foreach ($carts as $cart)
-                                    <tr>
-                                        <td style="width: 35%;">
-                                            <div class="product-title">{{ $cart->ticket->ticket_name }}</div>
-                                            <div class="product-subtitle">by {{ $cart->ticket->event->user->name }}</div>
-                                        </td>
-                                        <td style="width: 20%;">
-                                            <div class="product-title">{{ $cart->quantity }}</div>
-                                            <div class="product-subtitle"></div>
-                                        </td>
-                                        @php
-                                            $price = $cart->quantity * $cart->price;
-                                        @endphp
-                                        <td style="width: 35%;">
-                                            <div class="product-title">Rp. {{ number_format($price) }}</div>
-                                            <div class="product-subtitle"></div>
-                                        </td>
-                                        <td style="width: 10%;">
-                                            <form action="{{ route('transaction-detail-delete', $cart->id) }}"
-                                                method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-remove-cart" type="submit">
-                                                    Remove
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @php $totalPrice += $price @endphp
+                                    @if ($cart->ticket->expired_ticket <= \Carbon\Carbon::now()->toDateString())
+                                        <tr>
+                                            <td style="width: 35%;">
+                                                <div class="product-title">{{ $cart->ticket->ticket_name }}</div>
+                                                <div class="product-subtitle">by {{ $cart->ticket->event->user->name }}
+                                                </div>
+                                            </td>
+                                            <td style="width: 20%;">
+                                                <div class="product-title">{{ $cart->quantity }}</div>
+                                                <div class="product-subtitle"></div>
+                                            </td>
+                                            @php
+                                                $price = $cart->quantity * $cart->price;
+                                            @endphp
+                                            <td style="width: 35%;">
+                                                <div class="product-title">Rp. {{ number_format($price) }}</div>
+                                                <div class="product-subtitle"></div>
+                                            </td>
+                                            <td style="width: 10%;">
+                                                <form action="{{ route('transaction-detail-delete', $cart->id) }}"
+                                                    method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button class="btn btn-remove-cart" type="submit">
+                                                        Remove
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @php $totalPrice += $price @endphp
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -87,6 +90,8 @@
                     @csrf
                     <input type="hidden" name="total_price" value="{{ $totalPrice }}">
                     <input type="hidden" name="transaction_id" value="{{ $cart->transaction->id }}">
+                    {{-- <input type="hidden" name="status" value="1"> --}}
+                    <input type="hidden" name="id" value="{{ $cart->id }}">
                     <div class="row mb-2" data-aos="fade-up" data-aos-delay="200" id="locations">
                         <div class="col-md-6">
                             <div class="form-group">

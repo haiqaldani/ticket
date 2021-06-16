@@ -37,7 +37,9 @@
                                         @if ($item->verification_id == null)
                                             User Belum Mengisi Data
                                         @elseif($item->status == 2)
-                                            User Sudah di Verifikasi
+                                            Verifikasi Diterima
+                                        @elseif($item->status == 1)
+                                            Verifikasi Ditolak
                                         @else
                                             User Sedang di Verifikasi
                                         @endif
