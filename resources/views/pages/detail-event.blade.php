@@ -112,22 +112,23 @@
                                 @csrf
                                 @php $no = 1; @endphp
                                 @foreach ($item->ticket as $item)
-                                    <input type="hidden" value="{{ $item->id }}" name="ticket_id[]">
-                                    <input type="hidden" value="{{ $item->price }}" name="price[]">
+                                    <input type="hidden" value="{{ $item->id }}" @if ($item->expired_ticket >= \Carbon\Carbon::now()->toDateString()) name="ticket_id[] @endif ">
+                                    <input type="hidden" value="{{ $item->price }}" @if ($item->expired_ticket >= \Carbon\Carbon::now()->toDateString()) name="price[] @endif">
                                     <div class="card border mt-2">
                                         <div class="card-body">
                                             <h5 class="card-title border-bottom pb-2">{{ $item->ticket_name }}</h5>
                                             <div class="d-flex bd-highlight">
                                                 <div class="flex-fill bd-highlight col-lg-8">
                                                     {!! $item->description !!}
-                                                    
+
                                                 </div>
                                                 <div class="flex-fill bd-highlight col-lg-4">
-                                                    <input type="number" name="quantity[]" id="" min="0" placeholder="0" value=""
-                                                        max="{{ $item->quantity }}">
+                                                    <input type="number"  @if ($item->expired_ticket >= \Carbon\Carbon::now()->toDateString()) name="quantity[] @endif id="" min="0" placeholder="0"
+                                                        value="" max="{{ $item->quantity }}"  @if ($item->expired_ticket <= \Carbon\Carbon::now()->toDateString()) disabled @endif>
                                                 </div>
                                             </div>
-                                            <h5 class="card-title border-bottom pb-2">Rp. {{ number_format($item->price ?? 0) }}</h5>
+                                            <h5 class="card-title border-bottom pb-2">Rp.
+                                                {{ number_format($item->price ?? 0) }}</h5>
                                             <p class="card-text">Berakhir Tanggal
                                                 {{ \Carbon\Carbon::parse($item->expired_ticket)->format('d F Y') }}</p>
                                         </div>

@@ -41,27 +41,43 @@ class CartController extends Controller
             'code' => $code
         ]);
 
-        foreach ($request->input('quantity') as $i => $quantity) {
-            $time = Carbon::now()->toDateTimeString();
-            $price = $request->price;
-            $tkt = 'TKT-' . mt_rand(00000, 99999);
-            if ($quantity != 0) {
-                $store_transaction = array(
-                    'transaction_id' => $transaction->id,
-                    'ticket_id' => $request->ticket_id[$i],
-                    'quantity' => $quantity,
-                    'price' => $price[$i],
-                    'code' => $tkt,
-                    'updated_at' =>  $time,
-                    'created_at' =>  $time,
-                );
-
-                $total = Ticket::find($request->ticket_id[$i]);
-                $total->update(['quantity' => $total->quantity - $quantity]);
-
-                TransactionDetail::insert($store_transaction);
+        if(count([$request->quantity]) != 1 ){
+            foreach ($request->input('quantity') as $i => $quantity) {
+                $time = Carbon::now()->toDateTimeString();
+                $price = $request->price;
+                $tkt = 'TKT-' . mt_rand(00000, 99999);
+                if ($quantity != 0) {
+                    $store_transaction = array(
+                        'transaction_id' => $transaction->id,
+                        'ticket_id' => $request->ticket_id[$i],
+                        'quantity' => $quantity,
+                        'price' => $price[$i],
+                        'code' => $tkt,
+                        'updated_at' =>  $time,
+                        'created_at' =>  $time,
+                    );
+    
+                    $total = Ticket::find($request->ticket_id[$i]);
+                    $total->update(['quantity' => $total->quantity - $quantity]);
+    
+                    TransactionDetail::insert($store_transaction);
+                }
             }
+        } else {
+            $tkt = 'TKT-' . mt_rand(00000, 99999);
+
+            $data = $request->all();
+            $data['transaction_id'] = $transaction->id;
+            $data['code'] = $tkt;
+            $data['quantity'] = $request->quantity[0];
+            $data['ticket_id'] = $request->ticket_id[0];
+            $data['price'] = $request->price[0];
+
+            // dd($data);
+            TransactionDetail::create($data);
         }
+
+       
         return redirect()->route('checkout', $transaction->id);
     }
 
