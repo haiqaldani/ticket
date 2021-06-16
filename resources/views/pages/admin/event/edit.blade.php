@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label for="category_event">Kategori Event</label>
                     <select id="category_event" name="category_event" class="form-control">
-                        <option value="">Pilih Kategori Event</option>
+                        <option value="{{ $item->category_event }}">Pilih Untuk Diganti ({{ $item->category_event }})</option>
                         <option value="Festival General">Festival General</option>
                         <option value="Workshop">Workshop</option>
                         <option value="Conference">Conference</option>
@@ -77,7 +77,7 @@
                 <div class="form-group">
                     <label for="event_type">Tipe Event</label>
                     <select id="event_type" name="event_type" class="form-control">
-                        <option value="">Pilih Tipe Event</option>
+                        <option value="{{ $item->event_type }}">Pilih Untuk Diganti ({{ $item->event_type }})</option>
                         <option value="Online">Online</option>
                         <option value="Offline">Offline</option>
                     </select>
@@ -147,7 +147,7 @@
                 }
             },
             timepicker: false,
-            format: 'd.m.Y'
+            format: 'Y-m-d'
         });
 
         jQuery('#time , #time2').datetimepicker({

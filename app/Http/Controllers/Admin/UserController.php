@@ -21,7 +21,7 @@ class UserController extends Controller
         $item = User::with('verification_data')->findOrFail($id);
         return view('pages.admin.user.edit', [
             'item' => $item
-        ])
+        ]); 
     }
 
     

@@ -36,8 +36,8 @@
                                     <td>
                                         @if ($item->verification_id == null)
                                             User Belum Mengisi Data
-                                        @elseif($item->status = 2)
-                                            User Sudan di Verifikasi
+                                        @elseif($item->status == 2)
+                                            User Sudah di Verifikasi
                                         @else
                                             User Sedang di Verifikasi
                                         @endif

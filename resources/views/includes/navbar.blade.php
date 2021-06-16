@@ -55,7 +55,12 @@
                         Hi, {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu">
-                        <a href="{{ route('user-dashboard') }}" class="dropdown-item">Dashboard</a>
+                        @if (Auth::user()->roles == 'SELLER' || Auth::user()->roles == 'ADMIN')
+                            <a href="{{ route('user-dashboard') }}" class="dropdown-item">Dashboard</a>
+                        @else
+                            <a href="{{ route('dashboard-myticket') }}" class="dropdown-item">Dashboard</a>
+                        @endif
+                       
 
                         <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"

@@ -16,7 +16,7 @@ class IsSeller
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->roles == 'SELLER' || Auth::user()->roles == 'ADMIN')
+        if(Auth::user() && Auth::user()->status == 2 || Auth::user()->roles == 'ADMIN')
         {
             return $next($request);
         }
