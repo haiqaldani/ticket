@@ -146,7 +146,7 @@
                 }
             },
             timepicker: false,
-            format: 'd.m.Y'
+            format: 'Y-m-d'
         });
 
         jQuery('#time , #time2').datetimepicker({

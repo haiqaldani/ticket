@@ -10,18 +10,21 @@ use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $items = Event::all();
-        return view('pages.admin.event.index',[
+        return view('pages.admin.event.index', [
             'items' => $items
         ]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('pages.admin.event.create');
     }
 
-    public function store(EventRequest $request){
+    public function store(EventRequest $request)
+    {
 
         $data = $request->all();
 
@@ -32,24 +35,29 @@ class EventController extends Controller
         return redirect()->route('event.index');
     }
 
-    public function view(){
-
+    public function view()
+    {
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $item = Event::findorFail($id);
 
-        return view('pages.admin.event.edit',[
+        return view('pages.admin.event.edit', [
             'item' => $item
         ]);
     }
 
-    public function update(EventRequest $request, $id){
+    public function update(EventRequest $request, $id)
+    {
         $data = $request->all();
         $data['slug'] = Str::slug($request->title);
-        $data['image'] = $request->file('image')->store(
-            'assets/event', 'public'
-        );
+        if ($request->file != '') {
+            $data['banner'] = $request->file('banner')->store(
+                'assets/event',
+                'public'
+            );
+        }
 
         $item = Event::findOrFail($id);
 
@@ -57,7 +65,8 @@ class EventController extends Controller
         return redirect()->route('event.index');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $item = Event::findorFail($id);
         $item->delete();
 

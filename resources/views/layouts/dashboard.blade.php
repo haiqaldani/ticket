@@ -27,20 +27,20 @@
                     <img src="/images/dashboard-store-logo.svg" alt="" class="my-4" />
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="{{ route('user-dashboard') }}"
-                        class="list-group-item list-group-item-action {{ request()->is('dashboard') ? 'active' : '' }} ">
-                        Dashboard
-                    </a>
 
-                    <a href="{{ route('dashboard-myticket') }}"
-                        class="list-group-item list-group-item-action {{ request()->is('dashboard/myticket') ? 'active' : '' }} ">
-                        Tiket Saya
-                    </a>
                     @if (Auth::user()->roles == 'SELLER' || Auth::user()->roles == 'ADMIN')
                         <a href="{{ route('dashboard-event') }}"
                             class="list-group-item list-group-item-action {{ request()->is('dashboard/event*') ? 'active' : '' }} ">
                             Event
                         </a>
+                    @endif
+                    <a href="{{ route('dashboard-myticket') }}"
+                        class="list-group-item list-group-item-action {{ request()->is('dashboard/myticket') ? 'active' : '' }} ">
+                        Tiket Saya
+                    </a>
+                    @if (Auth::user()->roles == 'SELLER' || Auth::user()->roles == 'ADMIN')
+
+
                         <a href="{{ route('dashboard-ticket') }}"
                             class="list-group-item list-group-item-action {{ request()->is('dashboard/ticket*') ? 'active' : '' }} ">
                             Tiket
@@ -48,6 +48,10 @@
                         <a href="{{ route('dashboard-transaction') }}"
                             class="list-group-item list-group-item-action {{ request()->is('dashboard/transaction*') ? 'active' : '' }} ">
                             Tiket Terjual
+                        </a>
+                        <a href="{{ route('dashboard-account') }}"
+                            class="list-group-item list-group-item-action {{ request()->is('dashboard/accounts*') ? 'active' : '' }} ">
+                            Rekening Saya
                         </a>
                     @endif
 
@@ -59,10 +63,7 @@
                         class="list-group-item list-group-item-action {{ request()->is('dashboard/myprofile*') ? 'active' : '' }} ">
                         Profile Saya
                     </a>
-                    <a href="{{ route('dashboard-account') }}"
-                        class="list-group-item list-group-item-action {{ request()->is('dashboard/accounts*') ? 'active' : '' }} ">
-                        Rekening Saya
-                    </a>
+
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"
                         class="list-group-item list-group-item-action">
