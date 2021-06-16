@@ -16,7 +16,7 @@
             </div>
             <div class="dashboard-content">
                 <div class="row">
-                    <div class="col-12 mt-2">
+                    <div class="col-12 mt-3">
                         @foreach ($buyItems as $item)
                             <a href="" class="card card-list d-block">
                                 <div class="card-body">
