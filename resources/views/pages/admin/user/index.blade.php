@@ -45,7 +45,7 @@
                                     <td>
                                         @if ($item->id != Auth::user()->id)
                                             @if ($item->verification_id != null)
-                                                <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info">
+                                                <a href="{{ route('user-verif', $item->id) }}" class="btn btn-info">
                                                     <i class="fa fa-plus"></i> Verifikasi Data
                                                 </a>
                                             @endif
