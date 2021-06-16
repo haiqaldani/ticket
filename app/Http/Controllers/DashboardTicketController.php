@@ -30,7 +30,7 @@ class DashboardTicketController extends Controller
     public function myticket(){
         $buyItems = TransactionDetail::with(['transaction.user', 'ticket.event'])
         ->whereHas('transaction', function($transaction){
-            $transaction->where('user_id', Auth::user()->id);
+            $transaction->where('user_id', Auth::user()->id)->where('transaction_status', 'SUCCESS');
         })->get();
 
         return view('pages.dashboard-myticket',[
