@@ -10,7 +10,7 @@ class TransactionDetail extends Model
     use SoftDeletes;
 
     protected $fillable = [
-       'transaction_id', 'ticket_id', 'price', 'payment_status', 'quantity', 'status'
+       'transaction_id', 'ticket_id', 'price', 'payment_status', 'quantity', 'status', 'code'
     ];
 
     public function ticket(){
