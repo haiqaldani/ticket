@@ -38,7 +38,7 @@
                         class="list-group-item list-group-item-action {{ request()->is('dashboard/myticket') ? 'active' : '' }} ">
                         Tiket Saya
                     </a>
-                    @if (Auth::user()->roles == 2 || Auth::user()->roles == 'ADMIN')
+                    @if (Auth::user()->status == 2 || Auth::user()->roles == 'ADMIN')
 
 
                         <a href="{{ route('dashboard-ticket') }}"
