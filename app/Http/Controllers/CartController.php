@@ -83,7 +83,7 @@ class CartController extends Controller
 
     public function checkout()
     {
-        $carts = TransactionDetail::with(['ticket.event.user', 'transaction'])->whereHas('transaction', function ($transaction) {
+        $carts = TransactionDetail::with(['ticket', 'transaction'])->whereHas('transaction', function ($transaction) {
             $transaction->where('user_id', Auth::user()->id)->where('transaction_status', 'PENDING');
         })->get();
 

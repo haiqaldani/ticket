@@ -42,7 +42,7 @@
                             <tbody>
                                 @php $totalPrice = 0 @endphp
                                 @foreach ($carts as $cart)
-                                    @if ($cart->ticket->expired_ticket <= \Carbon\Carbon::now()->toDateString())
+                                    @if ($cart->ticket->expired_ticket >= \Carbon\Carbon::now()->toDateString())
                                         <tr>
                                             <td style="width: 35%;">
                                                 <div class="product-title">{{ $cart->ticket->ticket_name }}</div>
