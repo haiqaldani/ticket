@@ -29,7 +29,6 @@
                                             </button>
                                         </h2>
                                     </div>
-
                                     <div id="collapse{{ $item->id }}" class="collapse"
                                         aria-labelledby="heading{{ $item->id }}" data-parent="#accordionExample">
                                         @php
@@ -64,21 +63,34 @@
                                         @endforeach
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form action="" method="post">
-                                                    <button class="btn btn-success" type="submit"  @if ( \Carbon\Carbon::now() > \Carbon\Carbon::parse($item->until_date) ) disabled @endif>
-                                                        @if ( \Carbon\Carbon::now() <= \Carbon\Carbon::parse($item->until_date) ) 
-                                                            Ajukan Pencairan
-                                                        @elseif (\Carbon\Carbon::now() > \Carbon\Carbon::parse($item->until_date))
-                                                            Pecairan tersedia jika event berakhir
-                                                        @endif
-                                                        
-                                                    </button>
-                                                </form>
+                                                @if ($item->fund)
+                                                    @if ($item->fund->status == 'PROCESS')
+                                                        Pencairan sedang diproses
+                                                    @else
+                                                        Pencairan berhasil
+                                                    @endif
+                                                @else
+                                                    <form action="{{ route('processfund') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="event_id" value="{{ $item->id }}">
+                                                        <input type="hidden" name="total_price"
+                                                            value="{{ $totalall }}">
+
+                                                        <button class="btn btn-success" type="submit" @if (\Carbon\Carbon::now() >= \Carbon\Carbon::parse($item->until_date)) disabled @endif>
+                                                            @if (\Carbon\Carbon::now() < \Carbon\Carbon::parse($item->until_date))
+                                                                Ajukan Pencairan
+                                                            @elseif (\Carbon\Carbon::now() >=
+                                                                \Carbon\Carbon::parse($item->until_date))
+                                                                Pecairan tersedia jika event berakhir
+                                                            @endif
+                                                        </button>
+                                                    </form>
+                                                @endif
+
                                             </div>
                                             <div class="col-md-6 text-right">Total : Rp. {{ number_format($totalall) }}
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

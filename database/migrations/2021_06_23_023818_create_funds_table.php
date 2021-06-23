@@ -17,6 +17,7 @@ class CreateFundsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('event_id');
             $table->integer('total_price');
+            $table->string('status');
             $table->softDeletes();
             $table->timestamps();
         });

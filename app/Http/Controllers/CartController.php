@@ -73,7 +73,9 @@ class CartController extends Controller
             $data['ticket_id'] = $request->ticket_id[0];
             $data['price'] = $request->price[0];
 
-            // dd($data);
+            $total = Ticket::find($request->ticket_id[0]);
+            $total->update(['quantity' => $total->quantity - $request->quantity[0]]);
+
             TransactionDetail::create($data);
         }
 

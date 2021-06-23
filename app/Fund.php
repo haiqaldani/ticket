@@ -10,10 +10,10 @@ class Fund extends Model
     use SoftDeletes;
 
     protected $fillable = [
-       'event_id' ,'total_price'
+       'event_id' ,'total_price' , 'status'
     ];
 
     public function event(){
-        return $this->belongsTo(Event::class, 'id', 'event_id');
+        return $this->hasOne(Event::class, 'id', 'event_id');
     }
 }

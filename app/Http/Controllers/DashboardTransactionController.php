@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Fund;
 use App\Ticket;
 use App\Transaction;
 use App\TransactionDetail;
@@ -14,7 +15,7 @@ class DashboardTransactionController extends Controller
     public function index()
     {
 
-        $sellItems = Event::with(['ticket'])->where('user_id', Auth::user()->id)->get();
+        $sellItems = Event::with(['ticket', 'fund'])->where('user_id', Auth::user()->id)->get();
         return view('pages.dashboard-transaction', [
             'sellItems' => $sellItems,
             // 'totalquantity' => $totalquantity
@@ -54,5 +55,14 @@ class DashboardTransactionController extends Controller
         $item = Transaction::findOrFail($id);
         $item->update($data);
         return redirect()->route('dashboard-mytransaction');
+    }
+
+    public function processfund(Request $request)
+    {
+        $data = $request->all();
+        $data['status'] = 'PROCESS';
+
+        Fund::create($data);
+        return redirect()->route('dashboard-transaction');
     }
 }
