@@ -82,5 +82,6 @@ Route::prefix('admin')
         Route::resource('banner', 'BannerController');
         Route::resource('ticket', 'TicketController');
         Route::resource('transaction', 'TransactionController');
+        Route::resource('fund', 'FundController');
         Route::resource('blog', 'BlogController');
     });

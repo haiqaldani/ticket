@@ -66,7 +66,7 @@
                                                 @if ($item->fund)
                                                     @if ($item->fund->status == 'PROCESS')
                                                         Pencairan sedang diproses
-                                                    @else
+                                                    @elseif ($item->fund->status == 'SUCCESS')
                                                         Pencairan berhasil
                                                     @endif
                                                 @else
