@@ -26,6 +26,6 @@ class Ticket extends Model
     }
 
     public function transaction_detail(){
-        return $this->belongsTo( transaction_detail::class, 'id', 'ticket_id' );
+        return $this->belongsTo( TransactionDetail::class, 'id', 'ticket_id' );
     }
 }
