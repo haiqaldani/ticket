@@ -58,13 +58,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard/myticket', 'DashboardTicketController@myticket')->name('dashboard-myticket');
     Route::get('/dashboard/mytransaction', 'DashboardTransactionController@mytransaction')->name('dashboard-mytransaction');
 
-    Route::get('/dashboard/proofpayment/{id}', 'DashboardTransactionController@proofpayment')->name('dashboard-proofpayment');
-    Route::post('/dashboard/proofpayment/process/{id}', 'DashboardTransactionController@processpayment')->name('dashboard-processpayment');
+    Route::get('/dashboard/mytransaction/proofpayment/{id}', 'DashboardTransactionController@proofpayment')->name('proofpayment');
+    Route::patch('/dashboard/proofpayment/process/{id}', 'DashboardTransactionController@processpayment')->name('processpayment');
+    Route::post('/dashboard/fund/process', 'DashboardTransactionController@processfund')->name('processfund');
 
     Route::get('/dashboard/myprofile', 'DashboardProfileController@myprofile')->name('dashboard-profile');
     Route::post('/dashboard/myprofile/{redirect}', 'DashboardProfileController@update')->name('dashboard-profile-update');
-
-  
 
     Route::get('/dashboard/myprofile/verification', 'DashboardProfileController@verification')->name('dashboard-verification');
     Route::post('/dashboard/myprofile/verification/store', 'DashboardProfileController@store')->name('dashboard-verification-process');

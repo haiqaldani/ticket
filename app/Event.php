@@ -22,5 +22,8 @@ class Event extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+    public function fund(){
+        return $this->belongsTo(Fund::class, 'id', 'event_id');
+    }
 
 }

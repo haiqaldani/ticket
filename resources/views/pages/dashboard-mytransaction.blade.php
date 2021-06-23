@@ -18,37 +18,35 @@
                 <div class="row">
                     <div class="col-12 mt-3">
                         @foreach ($items as $item)
-                        @if ($item->ticket->expired_ticket <= \Carbon\Carbon::now()->toDateString() )
-                        <a href="@if($item->transaction->proof_payment == null) {{ route('dashboard-proofpayment', $item->id) }} @endif" class="card card-list d-block" >
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        {{ $item->transaction->code }}
+                            @if (\Carbon\Carbon::now() < \Carbon\Carbon::parse($item->ticket->expired_ticket))
+                                <a @if ($item->transaction->proof_payment == null) href="{{ route('proofpayment', $item->transaction->id) }}" @endif
+                                    class="card card-list d-block" >
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                {{ $item->transaction->code }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                Rp. {{ number_format($item->transaction->total_price) }}
+                                            </div>
+                                            <div class="col-md-3">
+                                                {{ \Carbon\Carbon::parse($item->transaction->created_at)->format(' d F Y') }}
+                                            </div>
+                                            <div class="col-md-4">
+                                                @if ($item->transaction->proof_payment == null)
+                                                    Upload Pembayaran
+                                                @elseif($item->transaction->transaction_status == 'PROCESS')
+                                                    Pembayaran sedang diproses
+                                                @else
+                                                    Pembayaran berhasil
+                                                @endif
+                                                <img src="/images/dashboard-arrow-right.svg" alt="" />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        {{ $item->transaction->transaction_status }}
-                                    </div>
-                                    <div class="col-md-2">
-                                        Rp. {{ number_format($item->transaction->total_price)}}
-                                    </div>
-                                    <div class="col-md-2">
-                                        {{ \Carbon\Carbon::parse($item->transaction->created_at)->format(' d F Y') }}
-                                    </div>
-                                    <div class="col-md-4">
-                                        @if($item->transaction->proof_payment == null)
-                                            <p>Upload Pembayaran</p>
-                                        @elseif($item->transaction->transaction_status == 'PROCESS')
-                                            <p>Pembayaran sedang diproses</p>
-                                        @else
-                                            <p>Pembayaran berhasil</p>
-                                        @endif
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        @endif
-                           
+                                </a>
+                            @endif
+
                         @endforeach
                     </div>
                 </div>

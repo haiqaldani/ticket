@@ -50,9 +50,10 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="banner" accept="image/*" aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose image</label>
-                      </div>
+                        <input type="file" class="custom-file-input" id="customFile"
+                            accept="image/*" name="banner">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
                   </div>
                   </div>
                   <div class="col-md-6">
